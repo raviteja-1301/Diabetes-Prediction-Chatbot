@@ -1,0 +1,17 @@
+Model Name: XGBoost + SMOTEENN (Diabetes Prediction)
+
+Input format:
+  - Columns: ['GenHlth', 'HighBP', 'DiffWalk', 'BMI', 'HighChol', 'Age', 'HeartDiseaseorAttack', 'PhysHlth', 'Income', 'Education', 'PhysActivity']
+  - Each input sample must be a pandas DataFrame with these columns.
+
+Example input:
+  pd.DataFrame([{"GenHlth": 3, "HighBP": 1, "DiffWalk": 0, "BMI": 28.0,
+                 "HighChol": 1, "Age": 9, "HeartDiseaseorAttack": 0,
+                 "PhysHlth": 5, "Income": 4, "Education": 5, "PhysActivity": 1}])
+
+To get prediction probability:
+  model = joblib.load("model_output/ml_xgboost_smoteenn_pipeline.pkl")
+  prob = model.predict_proba(input_df)[:, 1]
+
+To classify (0 or 1):
+  pred = (prob >= 0.841).astype(int)
